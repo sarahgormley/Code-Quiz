@@ -66,3 +66,5 @@ var questions = [{
     choices: ["<bottom>", "<section>", "<footer>", "<aside>"],
     correctAnswer: 2
 }];
+
+var
