@@ -1,10 +1,4 @@
-// Variables
-//Var for timer class 
-
-//Timer
-
 // Questions
-
 var questions = [{
     question: "What does HTML stand for?",
     choices: ["Hot Mail", "How to Make Lasagna", "Hot Take Markup Language", "Hyper Text Markup Language"],
@@ -67,43 +61,80 @@ var questions = [{
     correctAnswer: 2
 }];
 
-var startBtn = document.querySelector(".start-btn");
-var infoBox = document.querySelector(".info-container");
-var exitBtn = infoBox.querySelector(".quit");
-var continueBtn = infoBox.querySelector(".restart");
-var quizContainer = document.querySelector('.quiz-container')
-var resultBox = document.querySelector(".result")
-var optionList = document.querySelector(".options")
-var timeLine = document.querySelector(".time-line")
-var timeText = document.querySelector(".time-left")
-var timer = document.querySelector(".timer")
+// Variables
 
-//If start quiz button is clicked
-startBtn.onclick = () => {
-    infoBox.classList.add("activeInfo"); //instruction/info box
+var timer = document.getElementById("timer");
+var timeLeft = document.querySelector("time-left");
+var timesUp = document.getElementById("times-up")
+
+var startContainer = document.getElementById("start-container");
+
+var startBtn = document.getElementById("start-btn");
+var btn1 = document.getElementById("btn1");
+var btn2 = document.getElementById("btn2");
+var btn3 = document.getElementById("btn3");
+var btn4 = document.getElementById("btn4");
+var submitBtn = document.getElementById("submit-btn");
+var restartBtn = document.getElementById("restart-btn");
+var backBtn = document.getElementById("back-btn")
+var clearBtn = document.getElementById("clear-btn")
+
+var quizContainer = document.getElementById("quiz-container");
+var questionTitle = document.getElementById("question-title");
+var answerCheck = document.getElementById("answer-check");
+
+var summary = document.getElementById("summary");
+var finalScore = document.getElementById("final-score");
+var form = document.getElementById("form");
+var initials = document.getElementById("initials");
+
+var highscores = document.getElementById("highscores");
+var viewHighscore = document.getElementById("view-highscore");
+var scoreList = document.getElementById("list-of-scores");
+
+var correctAns = 0;
+var questionNum = 0;
+var scoreResult;
+var questionIndex = 0;
+
+var secsLeft = 120;
+
+//When start button is clicked
+function newQuiz() {
+    questionIndex = 0;
+    secsLeft = 120;
+    timeLeft.textContent = secsLeft;
+    initials.textContent = "";
+    startContainer.style.display = "none";
+    quizContainer.style.display = "block";
+    timer.style.display = "block"
+    timesUp.style.display = "none"
+
+    //Starts timer
+    var timerInterval = setInterval(function() {
+        secsLeft--;
+        timeLeft.textContent = secsLeft + "seconds left.";
+
+        if (secsLeft === 0) {
+            clearInterval(timerInterval);
+            timesUp.style.display = "block";
+        }
+
+    })
+
 }
 
-// If exit quiz button is clicked
-exitBtn.onclick = () => {
-    infoBox.classList.remove("activeInfo"); //instruction/info box
-}
+//function showQuiz 
+//present choices and questions
 
-//If continue quiz button is clicked
-continueBtn.onclick = () => {
-    infoBox.classList.remove("activeInfo") // hides info box
-    quizContainer.classList.add("activeQuiz") //Shows quiz
-    showQuestions(0); //Calls showQuestions function
-    questionCounter(1); //
-    startTimer(15);
-    startTimerLine(0);
-}
-var timeVal = 15;
-var questionCount = 0
-var questionNumber = 0
-var userScore = 0
-var counter;
-var counterLine;
-var widthValue = 0;
 
-var restartQuiz = resultBox.querySelector(".restart")
-var quitQuiz = resultBox.querySelector(".quit")
+
+
+//show questions
+
+//then check answer
+
+//functions for each answer chosen
+console.log(newQuiz)
+
+startBtn.addEventListener("click", newQuiz);

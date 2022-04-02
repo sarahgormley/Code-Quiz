@@ -5,69 +5,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Quiz</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <title>Document</title>
 </head>
 
 <body>
-    <header>
-        <a href="#">View Highscores</a>
-        <h4 id="time-show">Time Remaining: <br/><span id='timer'></span></h4>
-
+    <header class="top">
+        <div class="top-row">
+            <a href="#" id="view-highscore">View Highscores</a>
+            <div id="timer">Time Left</div>
+            <p class="clock"></p> Time: <span id="time-left">0</span>
     </header>
+    <div id="times-up">Time's Up!</div>
 
+    <div id="content">
+        <div id="start-container">
+            <h1 class="h1">Coding Quiz Challenge!</h1>
+            <p class="description">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds!</p>
+            <button id="start-btn">Start Quiz!</button>
+        </div>
+        <div id="quiz-container">
+            <p id="question-title"> </p>
+            <p><button id="btn1" class="ans-btn"> </button></p>
+            <p><button id="btn2" class="ans-btn"> </button></p>
+            <p><button id="btn3" class="ans-btn"> </button></p>
+            <p><button id="btn4" class="ans-btn"> </button></p>
+            <hr id="lineBreak">
+            <p id="answer-check"></p>
+        </div>
+        <div id="summary">
+            <h2 id="final-score">Your final score is: </h2>
+            <form id="form">
+                <p id="initials">Enter Your Initials</p>
+                <p><button id="submit-btn" class="submit-btn">Submit</button></p>
+            </form>
+            <p><button id="restart-btn" class="restart-btn">Restart Quiz</button></p>
+        </div>
+        <div id="highscores">
+            <h2>High Scores</h2>
+            <div id="list-of-scores"></div>
+            <p><button id="back-btn" class="back-btn">Back</button></p>
+            <p><button id="clear-btn" class="clear-btn">Clear High Scores</button></p>
 
-    <!-- start Quiz button -->
-    <div class="start-btn"><button>Start Quiz</button></div>
-    <!-- Info Box -->
-    <div class="info-container">
-        <div class="info-title"><span>Quiz Rules</span></div>
-        <div class="info-list">
-            <div class="info">5. You'll get points on the basis of your correct answers.</div>
-        </div>
-        <div class="buttons">
-            <button class="quit">Exit Quiz</button>
-            <button class="restart">Continue</button>
-        </div>
-    </div>
-    <!-- Quiz Box -->
-    <div class="quiz-container">
-        <header>
-            <div class="title">Code Quiz</div>
-            <div class="timer">
-                <div class="time-left">Time Left</div>
-                <div class="timer-secs">15</div>
-            </div>
-            <div class="time-line"></div>
-        </header>
-        <section>
-            <div class="question-text">
-                <!-- Here I've inserted question from JavaScript -->
-            </div>
-            <div class="options">
-                <!-- Here I've inserted options from JavaScript -->
-            </div>
-        </section>
-        <!-- footer of Quiz Box -->
-        <footer>
-            <div class="all-qs">
-                <!-- Here I've inserted Question Count Number from JavaScript -->
-            </div>
-            <button class="next-btn">Next Que</button>
-        </footer>
-    </div>
-    <!-- Result Box -->
-    <div class="result">
-        <div class="icon">
-            <i class="fas fa-crown"></i>
-        </div>
-        <div class="completed-text">You've completed the Quiz!</div>
-        <div class="score">
-            <!-- Here I've inserted Score Result from JavaScript -->
-        </div>
-        <div class="buttons">
-            <button class="restart">Replay Quiz</button>
-            <button class="quit">Quit Quiz</button>
         </div>
     </div>
 
