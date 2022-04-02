@@ -67,4 +67,43 @@ var questions = [{
     correctAnswer: 2
 }];
 
-var
+var startBtn = document.querySelector(".start-btn");
+var infoBox = document.querySelector(".info-container");
+var exitBtn = infoBox.querySelector(".quit");
+var continueBtn = infoBox.querySelector(".restart");
+var quizContainer = document.querySelector('.quiz-container')
+var resultBox = document.querySelector(".result")
+var optionList = document.querySelector(".options")
+var timeLine = document.querySelector(".time-line")
+var timeText = document.querySelector(".time-left")
+var timer = document.querySelector(".timer")
+
+//If start quiz button is clicked
+startBtn.onclick = () => {
+    infoBox.classList.add("activeInfo"); //instruction/info box
+}
+
+// If exit quiz button is clicked
+exitBtn.onclick = () => {
+    infoBox.classList.remove("activeInfo"); //instruction/info box
+}
+
+//If continue quiz button is clicked
+continueBtn.onclick = () => {
+    infoBox.classList.remove("activeInfo") // hides info box
+    quizContainer.classList.add("activeQuiz") //Shows quiz
+    showQuestions(0); //Calls showQuestions function
+    questionCounter(1); //
+    startTimer(15);
+    startTimerLine(0);
+}
+var timeVal = 15;
+var questionCount = 0
+var questionNumber = 0
+var userScore = 0
+var counter;
+var counterLine;
+var widthValue = 0;
+
+var restartQuiz = resultBox.querySelector(".restart")
+var quitQuiz = resultBox.querySelector(".quit")

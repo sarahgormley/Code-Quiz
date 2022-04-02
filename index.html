@@ -12,24 +12,63 @@
 <body>
     <header>
         <a href="#">View Highscores</a>
-        <h4 id="iTimeShow">Time Remaining: <br/><span id='timer'></span></h4>
+        <h4 id="time-show">Time Remaining: <br/><span id='timer'></span></h4>
 
     </header>
 
 
-    <div class="container">
-        <div class="quiz">
-            <h1>Coding Quiz Challenge</h1>
+    <!-- start Quiz button -->
+    <div class="start-btn"><button>Start Quiz</button></div>
+    <!-- Info Box -->
+    <div class="info-container">
+        <div class="info-title"><span>Quiz Rules</span></div>
+        <div class="info-list">
+            <div class="info">5. You'll get points on the basis of your correct answers.</div>
         </div>
-        <div class="start-btn">
-            <button>Start Quiz</button>
+        <div class="buttons">
+            <button class="quit">Exit Quiz</button>
+            <button class="restart">Continue</button>
         </div>
-        <div class="question"></div>
-        <ul class="choiceList"></ul>
-        <div class="quizMessage"></div>
-        <div class="result"></div>
-        <button class="button">Previous Question</button>
-        <button class="button">Next Question</button>
+    </div>
+    <!-- Quiz Box -->
+    <div class="quiz-container">
+        <header>
+            <div class="title">Code Quiz</div>
+            <div class="timer">
+                <div class="time-left">Time Left</div>
+                <div class="timer-secs">15</div>
+            </div>
+            <div class="time-line"></div>
+        </header>
+        <section>
+            <div class="question-text">
+                <!-- Here I've inserted question from JavaScript -->
+            </div>
+            <div class="options">
+                <!-- Here I've inserted options from JavaScript -->
+            </div>
+        </section>
+        <!-- footer of Quiz Box -->
+        <footer>
+            <div class="all-qs">
+                <!-- Here I've inserted Question Count Number from JavaScript -->
+            </div>
+            <button class="next-btn">Next Que</button>
+        </footer>
+    </div>
+    <!-- Result Box -->
+    <div class="result">
+        <div class="icon">
+            <i class="fas fa-crown"></i>
+        </div>
+        <div class="completed-text">You've completed the Quiz!</div>
+        <div class="score">
+            <!-- Here I've inserted Score Result from JavaScript -->
+        </div>
+        <div class="buttons">
+            <button class="restart">Replay Quiz</button>
+            <button class="quit">Quit Quiz</button>
+        </div>
     </div>
 
     <script src="./script.js"></script>
