@@ -1,0 +1,44 @@
+body {
+    background-color: pink;
+}
+
+
+/*.start-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}*/
+
+.start-btn button {
+    font-size: 25px;
+    font-weight: 500;
+    color: pink;
+    padding: 15px 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background: white;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 540px;
+    background: white;
+    border-radius: 5px;
+}
+
+.button {
+    margin: 0 5px;
+    height: 40px;
+    width: 100px;
+    border: 1px solid transparent;
+    background: pink;
+    border-radius: 5px;
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: 500;
+}
