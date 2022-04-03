@@ -2,65 +2,64 @@
 var questions = [{
     question: "What does HTML stand for?",
     choices: ["Hot Mail", "How to Make Lasagna", "Hot Take Markup Language", "Hyper Text Markup Language"],
-    correctAnswer: 3
+    correctAnswer: "Hyper Text Markup Language"
 }, {
     question: "</br> What type of tag is this?",
     choices: ["Break tag", "Broken tag", "Opening tag", "Neither"],
-    correctAnswer: 0
+    correctAnswer: "Break tag"
 }, {
     question: "</body> Is this an opening tag or a closing tag?",
     choices: ["Opening", "Closing", "Neither", "Could be both"],
-    correctAnswer: 1
+    correctAnswer: "Closing"
 }, {
     question: "Which of the below is the abbreviation of CSS?",
     choices: ["Cascade Style Sheets", "Color and Style Sheets", "Cascading Style Sheets", "Coded Style Sheet"],
-    correctAnswer: 2
+    correctAnswer: "Cascading Style Sheets"
 }, {
     question: "Which of the below CSS properties is used to change the background color of CSS ?",
     choices: ["bg color", "color-background", "background-color", "color"],
-    correctAnswer: 2
+    correctAnswer: "background-color"
 }, {
     question: "Which element is used to represent the transparency of an element in CSS ?",
     choices: ["Hover", "Opacity", "Transparent", "Overlay"],
-    correctAnswer: 1
+    correctAnswer: "Opacity"
 }, {
     question: "Inside which HTML element do we put the JavaScript?",
     choices: ["<script>", "<js>", "<scripting>", "<javascript>"],
-    correctAnswer: 0
+    correctAnswer: "<script>"
 }, {
     question: "How do you write 'Hello World' in an alert box?",
     choices: ['alertBox("Hello World");', 'msg("Hello World");', 'msgBox("Hello World");', 'alert("Hello World");'],
-    correctAnswer: 3
+    correctAnswer: 'alert("Hello World");'
 }, {
     question: "How do you write an IF statement in JavaScript?",
     choices: ["if (i == 5)", "if i = 5 then", "if i == 5 then", "if i = 5"],
-    correctAnswer: 0
+    correctAnswer: "if (i == 5)"
 }, {
     question: "How can you add a comment in a JavaScript?",
     choices: ["//This is a comment", "'This is a comment'", "<!--This is a comment-->", "~This is a comment~"],
-    correctAnswer: 0
+    correctAnswer: "//This is a comment"
 }, {
     question: "What is the correct way to write a JavaScript array?",
     choices: ['var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")', 'var colors = (1:"red", 2:"green", 3:"blue")', 'var colors = "red", "green", "blue"', 'var colors = ["red", "green", "blue"]'],
-    correctAnswer: 3
+    correctAnswer: 'var colors = ["red", "green", "blue"]'
 }, {
     question: "Which event occurs when the user clicks on an HTML element?",
     choices: ["onchange", "onmouseclick", "onclick", "onmouseover"],
-    correctAnswer: 2
+    correctAnswer: "onclick"
 }, {
     question: "Which operator is used to assign a value to a variable?",
     choices: ["x", "=", "*", "-"],
-    correctAnswer: 1
+    correctAnswer: "="
 }, {
     question: "What is the correct HTML for inserting an image?",
     choices: ['<image src="image.gif" alt="MyImage">', '<img src="image.gif" alt="MyImage">', '<img alt="MyImage">image.gif</img>', '<img href="image.gif" alt="MyImage">'],
-    correctAnswer: 1
+    correctAnswer: '<img src="image.gif" alt="MyImage">'
 }, {
     question: "Which HTML element is used to specify a footer for a document or section?",
     choices: ["<bottom>", "<section>", "<footer>", "<aside>"],
-    correctAnswer: 2
+    correctAnswer: "<footer>"
 }];
-
 // Variables
 
 var timer = document.getElementById("timer");
@@ -70,10 +69,6 @@ var timesUp = document.getElementById("times-up")
 var startContainer = document.getElementById("start-container");
 
 var startBtn = document.getElementById("start-btn");
-var btn1 = document.getElementById("btn1");
-var btn2 = document.getElementById("btn2");
-var btn3 = document.getElementById("btn3");
-var btn4 = document.getElementById("btn4");
 var submitBtn = document.getElementById("submit-btn");
 var restartBtn = document.getElementById("restart-btn");
 var backBtn = document.getElementById("back-btn")
@@ -141,11 +136,11 @@ function cycleQuestions() {
     questionRandom = questions[Math.floor(Math.random() * questions.length)]
     console.log(questionRandom)
 
-    questionTitle.textContent = questionRandom[questionInd].question;
-    answer1.textContent = questions[questionInd].choices[0];
-    answer2.textContent = questions[questionInd].choices[1];
-    answer3.textContent = questions[questionInd].choices[2];
-    answer4.textContent = questions[questionInd].choices[3];
+    questionTitle.textContent = questionRandom.question;
+    answer1.textContent = questionRandom.choices[0];
+    answer2.textContent = questionRandom.choices[1];
+    answer3.textContent = questionRandom.choices[2];
+    answer4.textContent = questionRandom.choices[3];
 }
 
 
@@ -154,16 +149,31 @@ function cycleQuestions() {
 //hide line break
 //if else rules for checking answer
 //rule for continuing thru questions if/else
-function checkAns() {
-    if (questions[questionInd].correctAnswer === questions[questionInd].choices[correctAnswer]) {
+function checkAns(correctAnswer) {
+    if (questions[questionInd].correctAnswer == questions[questionInd].choices[correctAnswer]) {
+
         console.log("it worked!")
-    };
+    } else {
+        console.log("wrong answer")
+    }
+
 }
-
-
-
+console.log(questions[0].choices[1])
 
 //functions x4 for answer chosen
+
+function choose0() { checkAns(0) };
+
+function choose1() { checkAns(1) };
+
+function choose2() { checkAns(2) };
+
+function choose3() { checkAns(3) };
+
+
+
+
+
 
 //function for once gameover
 
@@ -175,3 +185,7 @@ function checkAns() {
 
 //event listners for buttons
 startBtn.addEventListener("click", newQuiz);
+answer1.addEventListener("click", choose0);
+answer2.addEventListener("click", choose1);
+answer3.addEventListener("click", choose2);
+answer4.addEventListener("click", choose3);
