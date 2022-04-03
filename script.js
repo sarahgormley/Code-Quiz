@@ -5,11 +5,11 @@ var questions = [{
     correctAnswer: 3
 }, {
     question: "</br> What type of tag is this?",
-    choices: ["Break tag", "Broken tag", "An opening tag"],
+    choices: ["Break tag", "Broken tag", "Opening tag", "Neither"],
     correctAnswer: 0
 }, {
     question: "</body> Is this an opening tag or a closing tag?",
-    choices: ["Opening", "Closing", "Neither"],
+    choices: ["Opening", "Closing", "Neither", "Could be both"],
     correctAnswer: 1
 }, {
     question: "Which of the below is the abbreviation of CSS?",
@@ -37,7 +37,7 @@ var questions = [{
     correctAnswer: 0
 }, {
     question: "How can you add a comment in a JavaScript?",
-    choices: ["//This is a comment", "'This is a comment'", "<!--This is a comment-->"],
+    choices: ["//This is a comment", "'This is a comment'", "<!--This is a comment-->", "~This is a comment~"],
     correctAnswer: 0
 }, {
     question: "What is the correct way to write a JavaScript array?",
@@ -64,7 +64,7 @@ var questions = [{
 // Variables
 
 var timer = document.getElementById("timer");
-var timeLeft = document.querySelector("time-left");
+var timeLeft = document.getElementById("time-left");
 var timesUp = document.getElementById("times-up")
 
 var startContainer = document.getElementById("start-container");
@@ -82,6 +82,10 @@ var clearBtn = document.getElementById("clear-btn")
 var quizContainer = document.getElementById("quiz-container");
 var questionTitle = document.getElementById("question-title");
 var answerCheck = document.getElementById("answer-check");
+var answer1 = document.getElementById("btn1")
+var answer2 = document.getElementById("btn2")
+var answer3 = document.getElementById("btn3")
+var answer4 = document.getElementById("btn4")
 
 var summary = document.getElementById("summary");
 var finalScore = document.getElementById("final-score");
@@ -95,13 +99,14 @@ var scoreList = document.getElementById("list-of-scores");
 var correctAns = 0;
 var questionNum = 0;
 var scoreResult;
-var questionIndex = 0;
+var questionInd = 0;
+var questionRandom;
 
 var secsLeft = 120;
 
 //When start button is clicked
 function newQuiz() {
-    questionIndex = 0;
+    questionInd = 0;
     secsLeft = 120;
     timeLeft.textContent = secsLeft;
     initials.textContent = "";
@@ -113,28 +118,60 @@ function newQuiz() {
     //Starts timer
     var timerInterval = setInterval(function() {
         secsLeft--;
-        timeLeft.textContent = secsLeft + "seconds left.";
+        timeLeft.textContent = secsLeft + " seconds left.";
 
         if (secsLeft === 0) {
             clearInterval(timerInterval);
             timesUp.style.display = "block";
         }
 
-    })
+    }, 1000);
+
+    displayQuiz()
 
 }
 
 //function showQuiz 
-//present choices and questions
+function displayQuiz() {
+    cycleQuestions();
+}
+// show next question
+function cycleQuestions() {
+
+    questionRandom = questions[Math.floor(Math.random() * questions.length)]
+    console.log(questionRandom)
+
+    questionTitle.textContent = questionRandom[questionInd].question;
+    answer1.textContent = questions[questionInd].choices[0];
+    answer2.textContent = questions[questionInd].choices[1];
+    answer3.textContent = questions[questionInd].choices[2];
+    answer4.textContent = questions[questionInd].choices[3];
+}
+
+
+//create function to check answer
+
+//hide line break
+//if else rules for checking answer
+//rule for continuing thru questions if/else
+function checkAns() {
+    if (questions[questionInd].correctAnswer === questions[questionInd].choices[correctAnswer]) {
+        console.log("it worked!")
+    };
+}
 
 
 
 
-//show questions
+//functions x4 for answer chosen
 
-//then check answer
+//function for once gameover
 
-//functions for each answer chosen
-console.log(newQuiz)
+//function for showhighscores
 
+
+
+
+
+//event listners for buttons
 startBtn.addEventListener("click", newQuiz);
