@@ -10,18 +10,19 @@
 </head>
 
 <body>
-    <header class="top">
-        <div class="top-row">
+    <header>
+        <div>
             <a href="#" id="view-highscore">View Highscores</a>
-            <div id="timer">Time Left</div>
-            <p class="clock"></p> Time: <span id="time-left">0</span>
+            <div id="timer"></div>
+            <p class="clock"></p><span id="time-left"></span>
+        </div>
     </header>
     <div id="times-up">Time's Up!</div>
 
     <div id="content">
         <div id="start-container">
             <h1 class="h1">Coding Quiz Challenge!</h1>
-            <p class="description">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds!</p>
+            <p class="description">Try to answer the following code-related questions within the time limit. <br> Keep in mind that incorrect answers will penalize your time by 10 seconds!</p>
             <button id="start-btn">Start Quiz!</button>
         </div>
         <div id="quiz-container">
@@ -30,13 +31,14 @@
             <p><button id="btn2" class="ans-btn"> </button></p>
             <p><button id="btn3" class="ans-btn"> </button></p>
             <p><button id="btn4" class="ans-btn"> </button></p>
-            <hr id="lineBreak">
+
             <p id="answer-check"></p>
         </div>
         <div id="summary">
-            <h2 id="final-score">Your final score is: </h2>
+            <h2>Your final score is: <span id="final-score"></span></h2>
             <form id="form">
-                <p id="initials">Enter Your Initials</p>
+                <label for="Initials">Enter Your Initials:</label>
+                <input type="text" id="initials" name="initials"><br><br>
                 <p><button id="submit-btn" class="submit-btn">Submit</button></p>
             </form>
             <p><button id="restart-btn" class="restart-btn">Restart Quiz</button></p>

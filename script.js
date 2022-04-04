@@ -84,7 +84,6 @@ var answer4 = document.getElementById("btn4")
 
 var summary = document.getElementById("summary");
 var finalScore = document.getElementById("final-score");
-var form = document.getElementById("form");
 var initials = document.getElementById("initials");
 
 var highscores = document.getElementById("highscores");
@@ -93,11 +92,17 @@ var scoreList = document.getElementById("list-of-scores");
 
 var correctAns = 0;
 var questionNum = 0;
-var scoreResult;
+var scoreResult = 0;
 var questionInd = 0;
 var questionRandom;
 
 var secsLeft = 120;
+
+timesUp.style.display = "none"
+summary.style.display = "none"
+highscores.style.display = "none"
+quizContainer.style.display = "none"
+
 
 //When start button is clicked
 function newQuiz() {
@@ -106,6 +111,8 @@ function newQuiz() {
     timeLeft.textContent = secsLeft;
     initials.textContent = "";
     startContainer.style.display = "none";
+    summary.style.display = "none";
+    highscores.style.display = "none";
     quizContainer.style.display = "block";
     timer.style.display = "block"
     timesUp.style.display = "none"
@@ -116,8 +123,11 @@ function newQuiz() {
         timeLeft.textContent = secsLeft + " seconds left.";
 
         if (secsLeft === 0) {
+            clearInterval(secsLeft);
             clearInterval(timerInterval);
             timesUp.style.display = "block";
+            timer.style.display = "none"
+            gameOver();
         }
 
     }, 1000);
@@ -133,35 +143,47 @@ function displayQuiz() {
 // show next question
 function cycleQuestions() {
 
-    questionRandom = questions[Math.floor(Math.random() * questions.length)]
-    console.log(questionRandom)
+    //questionRandom = questions[Math.floor(Math.random() * questions.length)]
 
-    questionTitle.textContent = questionRandom.question;
-    answer1.textContent = questionRandom.choices[0];
-    answer2.textContent = questionRandom.choices[1];
-    answer3.textContent = questionRandom.choices[2];
-    answer4.textContent = questionRandom.choices[3];
+    questionTitle.textContent = questions[questionInd].question;
+    answer1.textContent = questions[questionInd].choices[0];
+    answer2.textContent = questions[questionInd].choices[1];
+    answer3.textContent = questions[questionInd].choices[2];
+    answer4.textContent = questions[questionInd].choices[3];
 }
 
 
 //create function to check answer
-
-//hide line break
 //if else rules for checking answer
 //rule for continuing thru questions if/else
 function checkAns(correctAnswer) {
-    if (questions[questionInd].correctAnswer == questions[questionInd].choices[correctAnswer]) {
-
-        console.log("it worked!")
+    if (questions[questionInd].correctAnswer === questions[questionInd].choices[correctAnswer]) {
+        scoreResult++;
+        answerCheck.textContent = "Correct!"
+            //console.log("it worked!")
+            //console.log(scoreResult)
     } else {
-        console.log("wrong answer")
+        secsLeft -= 10;
+        answerCheck.textContent = "Incorrect!"
+
+        //console.log("wrong answer")
     }
 
+    questionInd++;
+    // repeat with the rest of questions 
+    if (questionInd < questions.length) {
+        cycleQuestions();
+    } else {
+        // if no more question, run game over function
+        gameOver();
+    }
+    if (secsLeft === 0) {
+        gameOver();
+    }
 }
-console.log(questions[0].choices[1])
+//console.log(questions[0].choices[1])
 
 //functions x4 for answer chosen
-
 function choose0() { checkAns(0) };
 
 function choose1() { checkAns(1) };
@@ -170,16 +192,75 @@ function choose2() { checkAns(2) };
 
 function choose3() { checkAns(3) };
 
+function gameOver() {
+    //console.log("game over!")
+    startContainer.style.display = "none";
+    summary.style.display = "block";
+    highscores.style.display = "none";
+    quizContainer.style.display = "none";
+    timer.style.display = "none"
+    timesUp.style.display = "block";
+
+    finalScore.textContent = scoreResult
+}
 
 
 
+//function for sotring high scores locally
+function storeHighScores(event) {
+    event.preventDefault();
 
+    if (initials.value === "") {
+        alert("Please enter initials!");
+        return;
+    }
 
-//function for once gameover
+    var storedHighScore = localStorage.getItem("high scores");
+    var arrayScores;
 
-//function for showhighscores
+    if (!storedHighScore) {
+        arrayScores = [];
+    } else {
+        arrayScores = JSON.parse(storedHighScore)
+    }
 
+    var playerScore = {
+        initials: initials.value,
+        score: finalScore.textContent
+    };
 
+    console.log(playerScore)
+    console.log(storedHighScore)
+
+    var scoresString = JSON.stringify(arrayScores);
+    window.localStorage.setItem("high scores", scoresString);
+
+    showScores();
+}
+
+var i = 0
+
+function showScores() {
+
+    startContainer.style.display = "none";
+    summary.style.display = "none";
+    highscores.style.display = "block";
+    quizContainer.style.display = "none";
+    timer.style.display = "none"
+    timesUp.style.display = "none"
+
+    var storedHighScore = localStorage.getItem("high scores");
+    if (storedHighScore === null) {
+        return;
+    }
+    var storedHighScore = JSON.parse(storedHighScore);
+
+    for (; i < storedHighScore.length; i++) {
+        var eachNewScore = document.createElement("p");
+        eachNewScore.innerHTML = storedHighScore[i].initials + ":" + storedHighScore[i].score;
+        scoreList.appendChild(eachNewScore);
+    }
+}
 
 
 
@@ -189,3 +270,22 @@ answer1.addEventListener("click", choose0);
 answer2.addEventListener("click", choose1);
 answer3.addEventListener("click", choose2);
 answer4.addEventListener("click", choose3);
+
+restartBtn.addEventListener("click", newQuiz);
+
+submitBtn.addEventListener("click", function(event) {
+    storeHighScores(event);
+});
+
+viewHighscore.addEventListener("click", function(event) {
+    showScores(event);
+})
+
+backBtn.addEventListener("click", function() {
+    startContainer.style.display = "block";
+    highscores.style.display = "none"
+
+})
+clearBtn.addEventListener("click", function() {
+    window.localStorage.removeItem("high scores");
+});
