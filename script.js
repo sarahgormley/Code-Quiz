@@ -236,6 +236,7 @@ function storeHighScores(event) {
         arrayScores = [];
     } else {
         arrayScores = JSON.parse(storedHighScore)
+
     }
 
     var playerScore = {
@@ -244,7 +245,8 @@ function storeHighScores(event) {
     };
 
     console.log(playerScore)
-    console.log(storedHighScore)
+
+    arrayScores.push(playerScore);
 
     var scoresString = JSON.stringify(arrayScores);
     window.localStorage.setItem("high scores", scoresString);
@@ -273,8 +275,9 @@ function showScores() {
 
     for (; i < storedHighScore.length; i++) {
         var eachNewScore = document.createElement("p");
-        eachNewScore.innerHTML = storedHighScore[i].initials + ":" + storedHighScore[i].score;
+        eachNewScore.innerHTML = storedHighScore[i].initials + " - Score: " + storedHighScore[i].score;
         scoreList.appendChild(eachNewScore);
+
     }
 }
 
@@ -308,5 +311,5 @@ backBtn.addEventListener("click", function() {
 
 })
 clearBtn.addEventListener("click", function() {
-    window.localStorage.removeItem("high scores");
+    localStorage.removeItem("high scores");
 });
