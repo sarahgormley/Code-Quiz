@@ -87,7 +87,7 @@ var finalScore = document.getElementById("final-score");
 var initials = document.getElementById("initials");
 
 var highscores = document.getElementById("highscores");
-var viewHighscore = document.getElementById("view-highscore");
+var viewHighScore = document.getElementById("view-highscore");
 var scoreList = document.getElementById("list-of-scores");
 
 var correctAns = 0;
@@ -99,11 +99,15 @@ var questionRandom;
 var secsLeft = 120;
 var timerInterval;
 
-timesUp.style.display = "none"
-summary.style.display = "none"
-highscores.style.display = "none"
-quizContainer.style.display = "none"
+startScreen();
 
+function startScreen() {
+    startContainer.style.display = "block"
+    timesUp.style.display = "none"
+    summary.style.display = "none"
+    highscores.style.display = "none"
+    quizContainer.style.display = "none"
+}
 
 //When start button is clicked
 function newQuiz() {
@@ -124,7 +128,7 @@ function newQuiz() {
         secsLeft--;
         timeLeft.textContent = secsLeft + " seconds left";
 
-        if (secsLeft === 0) {
+        if (secsLeft <= 0) {
             clearInterval(secsLeft);
             clearInterval(timerInterval);
             timesUp.style.display = "block";
@@ -216,7 +220,7 @@ function gameOver() {
 
 
 
-//function for sotring high scores locally
+//function for st0ring high scores locally
 function storeHighScores(event) {
     event.preventDefault();
 
@@ -259,11 +263,13 @@ function showScores() {
     timer.style.display = "none"
     timesUp.style.display = "none"
 
-    var storedHighScore = localStorage.getItem("high scores");
-    if (storedHighScore === null) {
+    var saveHighScore = localStorage.getItem("high scores");
+
+    if (saveHighScore === null) {
         return;
     }
-    var storedHighScore = JSON.parse(storedHighScore);
+    console.log(saveHighScore)
+    var storedHighScore = JSON.parse(saveHighScore);
 
     for (; i < storedHighScore.length; i++) {
         var eachNewScore = document.createElement("p");
@@ -281,13 +287,18 @@ answer2.addEventListener("click", choose1);
 answer3.addEventListener("click", choose2);
 answer4.addEventListener("click", choose3);
 
-restartBtn.addEventListener("click", newQuiz);
+restartBtn.addEventListener("click", function() {
+    startContainer.style.display = "block";
+    highscores.style.display = "none";
+    summary.style.display = "none"
+
+})
 
 submitBtn.addEventListener("click", function(event) {
     storeHighScores(event);
 });
 
-viewHighscore.addEventListener("click", function(event) {
+viewHighScore.addEventListener("click", function(event) {
     showScores(event);
 })
 
