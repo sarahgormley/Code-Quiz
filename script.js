@@ -97,6 +97,7 @@ var questionInd = 0;
 var questionRandom;
 
 var secsLeft = 120;
+var timerInterval;
 
 timesUp.style.display = "none"
 summary.style.display = "none"
@@ -108,6 +109,7 @@ quizContainer.style.display = "none"
 function newQuiz() {
     questionInd = 0;
     secsLeft = 120;
+    scoreResult = 0;
     timeLeft.textContent = secsLeft;
     initials.textContent = "";
     startContainer.style.display = "none";
@@ -118,15 +120,17 @@ function newQuiz() {
     timesUp.style.display = "none"
 
     //Starts timer
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         secsLeft--;
-        timeLeft.textContent = secsLeft + " seconds left.";
+        timeLeft.textContent = secsLeft + " seconds left";
 
         if (secsLeft === 0) {
             clearInterval(secsLeft);
             clearInterval(timerInterval);
             timesUp.style.display = "block";
-            timer.style.display = "none"
+            timer.style.display = "none";
+            timeLeft.style.display = "none";
+
             gameOver();
         }
 
@@ -160,11 +164,14 @@ function checkAns(correctAnswer) {
     if (questions[questionInd].correctAnswer === questions[questionInd].choices[correctAnswer]) {
         scoreResult++;
         answerCheck.textContent = "Correct!"
-            //console.log("it worked!")
-            //console.log(scoreResult)
+        answerCheck.style.color = "green";
+
+        //console.log("it worked!")
+        //console.log(scoreResult)
     } else {
         secsLeft -= 10;
-        answerCheck.textContent = "Incorrect!"
+        answerCheck.textContent = "Incorrect!";
+        answerCheck.style.color = "red";
 
         //console.log("wrong answer")
     }
@@ -176,6 +183,9 @@ function checkAns(correctAnswer) {
     } else {
         // if no more question, run game over function
         gameOver();
+        timesUp.style.display = "block";
+        timer.style.display = "none";
+        timeLeft.style.display = "none";
     }
     if (secsLeft === 0) {
         gameOver();

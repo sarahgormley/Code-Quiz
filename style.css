@@ -22,10 +22,12 @@ header {
 /* Timer styling */
 
 .clock,
-#time-left {
+#time-left,
+#times-up {
     float: right;
     font-size: 15px;
-    color: rgb(167, 121, 167)
+    color: rgb(167, 121, 167);
+    margin-right: 5px;
 }
 
 
@@ -41,7 +43,7 @@ header {
 /* Main content of quiz */
 
 #content {
-    width: 100%;
+    width: 900px;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -58,12 +60,13 @@ h1 {
 
 .description {
     font-size: 2rem;
-    color: rgb(167, 121, 167)
+    color: rgb(167, 121, 167);
+    text-align: center;
 }
 
 #start-btn {
     margin-top: 50px;
-    margin-left: 230px;
+    margin-left: 355px;
     font-size: 1.8rem;
     padding: 1rem 0;
     width: 20rem;
@@ -76,10 +79,21 @@ h1 {
     background-color: papayawhip;
 }
 
+#start-container,
+#quiz-container,
+#summary,
+#highscores {
+    width: 900px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
 #question-title {
     margin-bottom: 4rem;
     font-size: 4.2rem;
-    color: rgb(255, 149, 88)
+    color: rgb(255, 149, 88);
+    text-align: center;
 }
 
 h3 {
@@ -97,9 +111,8 @@ h3 {
 button {
     font-size: 1.8rem;
     padding: 1rem 0;
-    width: 100%;
-    text-align: center;
-    align-items: center;
+    width: 500px;
+    margin-left: 200px;
     border: 0.1rem solid rgb(84, 79, 148);
     margin-bottom: 1rem;
     text-decoration: none;
@@ -119,29 +132,27 @@ button[disabled]:hover {
     transform: none;
 }
 
-.choice-container {
-    display: flex;
-    margin-bottom: 0.5rem;
-    width: 100%;
-    font-size: 1.8rem;
-    border: 0.1rem solid plum;
-    background-color: whitesmoke;
+#answer-check {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 2px;
 }
 
-.choice-container:hover {
-    cursor: pointer;
-    box-shadow: 0 0.4rem 1.4rem 0 powderblue;
-    transform: translate(-0.1rem);
+h2 {
+    margin-bottom: 6rem;
+    font-size: 4rem;
+    color: rgb(255, 149, 88);
+    text-align: center;
 }
 
-.choice-prefix {
-    padding: 1.5rem 2.5rem;
-    background-color: aquamarine;
-    color: white;
+#final-score {
+    color: plum;
+    font-size: 4rem;
 }
 
-.choice-text {
-    padding: 1.5rem
+.enter {
+    font-size: 20px;
+    color: violet;
+    text-align: center;
+    margin-left: 320px;
 }
-
-*/
