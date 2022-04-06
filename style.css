@@ -138,11 +138,17 @@ button[disabled]:hover {
     transform: none;
 }
 
+
+/* Styling for 'correct' or 'incorrect' answer check */
+
 #answer-check {
     text-align: center;
     font-size: 20px;
     margin-top: 2px;
 }
+
+
+/* Styling for h2 */
 
 h2 {
     margin-bottom: 6rem;
@@ -151,10 +157,16 @@ h2 {
     text-align: center;
 }
 
+
+/* Styling for score */
+
 #final-score {
     color: plum;
     font-size: 4rem;
 }
+
+
+/* Inital entry styling */
 
 label {
     font-size: 20px;
@@ -163,9 +175,15 @@ label {
     margin-left: 320px;
 }
 
+
+/* Styling for local storage listed scores */
+
 #list-of-scores p {
     font-size: 20px;
     color: plum;
     line-height: 1.2;
     letter-spacing: 1.2px;
+    text-align: center;
+    margin-bottom: 8px;
+    ;
 }
